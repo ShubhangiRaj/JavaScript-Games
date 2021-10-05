@@ -1,19 +1,12 @@
+
+
 let numOfMoves = 9;
 // after 9 moves call validateFilledBoard()
 function validateFilledBoard(board){
     // check rows condition
     let winningSequenceForX = "XXX";
     let winningSequenceForO = "OOO";
-    // for(let i = 0; i < board.length; i++){
-    //     if(board[i].join("") === winningSequenceForO){
-    //         alert("Game won by O");
-    //         return;
-    //     }
-    //     if(board[i].join("") === winningSequenceForX){
-    //         alert("Game won by X");
-    //         return;
-    //     }
-    // }
+
     let row1 = board[0][0] + board[0][1] + board[0][2];
     let row2 = board[1][0] + board[1][1] + board[1][2];
     let row3 = board[2][0] + board[2][1] + board[2][2];
@@ -56,6 +49,7 @@ function validateFilledBoard(board){
 validateFilledBoard([["X","X","X"],["X","O","O"],["O","X","O"]]);
 validateFilledBoard([["X","-","-"],["X","-","-"],["X","-","-"]]);
 validateFilledBoard([["-","-","O"],["-","O","-"],["O","-","-"]]);
+validateFilledBoard([["-","-","-"],["-","-","-"],["-","-","-"]]);
 
 // initialize board [["-","-","-"],["-","-","-"],["-","-","-"]];
 // a completely filled board will not have any "-"

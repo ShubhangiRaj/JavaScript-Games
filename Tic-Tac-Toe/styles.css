@@ -1,0 +1,15 @@
+.board{
+    height: 450px;
+    width: 450px;
+    border: 1px solid red;
+}
+.row{
+    border: 1px solid yellow;
+    height: 33%;
+    display: flex;
+
+}
+.cols{
+    border: 1px solid blue;
+    width: 33%;
+}
