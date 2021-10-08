@@ -1,6 +1,66 @@
+let xMark = "X";
+let xMarkFlag = false;
+let oMark = "O";
+let oMarkFlag = false;
+let board = [["-","-","-"],["-","-","-"],["-","-","-"]];
+let numOfMoves = 0;
+let clickedCells = [];
 
+let cells = document.getElementsByClassName("cols");
+console.log(cells);
+console.log(clickedCells.length);
+console.log(clickedCells);
 
-let numOfMoves = 9;
+if(numOfMoves === 9){
+    document.querySelectorAll('.cols').forEach((cell) => {
+        cell.removeEventListener("click", (e) => {
+            console.log("removed");
+        })
+    })
+    validateFilledBoard(board);
+    alert("GAME OVER");
+    board = [["-","-","-"],["-","-","-"],["-","-","-"]];
+} else {
+    document.querySelectorAll('.cols').forEach((cell) => {
+        cell.addEventListener("click", (e) => {
+        console.log("HI" + e.target.id);
+        // write a function which takes the event and the board and marks the cell corresponding the board
+        let cellId = e.target.id;
+        console.log(cellId);
+        if(clickedCells.indexOf(cellId) === -1){
+            numOfMoves += 1;
+            clickedCells.push(cellId);
+        } else {
+            // dont do anything;
+            return;
+        }
+        if(numOfMoves === 1){
+            xMarkFlag = true;
+        }
+        function fillBoard(cellId, board){
+            let row = Number(cellId[0]);
+            let col = Number(cellId[2]);
+            console.log(row, col);
+            // check cellId and corresponding index in board
+            if(board[row][col] === "-"){
+                if(xMarkFlag){
+                    board[row][col] = "X";
+                    xMarkFlag = false;
+                    oMarkFlag = true;
+                } else {
+                    board[row][col] = "O";
+                    oMarkFlag = false;
+                    xMarkFlag = true;
+                }
+            }
+        }
+        fillBoard(cellId, board);   
+        console.log(board);
+        return board;
+    })
+    })
+}
+
 // after 9 moves call validateFilledBoard()
 function validateFilledBoard(board){
     // check rows condition
@@ -46,10 +106,10 @@ function validateFilledBoard(board){
     return;
 }
 
-validateFilledBoard([["X","X","X"],["X","O","O"],["O","X","O"]]);
-validateFilledBoard([["X","-","-"],["X","-","-"],["X","-","-"]]);
-validateFilledBoard([["-","-","O"],["-","O","-"],["O","-","-"]]);
-validateFilledBoard([["-","-","-"],["-","-","-"],["-","-","-"]]);
+// validateFilledBoard([["X","X","X"],["X","O","O"],["O","X","O"]]);
+// validateFilledBoard([["X","-","-"],["X","-","-"],["X","-","-"]]);
+// validateFilledBoard([["-","-","O"],["-","O","-"],["O","-","-"]]);
+// validateFilledBoard([["-","-","-"],["-","-","-"],["-","-","-"]]);
 
 // initialize board [["-","-","-"],["-","-","-"],["-","-","-"]];
 // a completely filled board will not have any "-"
